@@ -17,7 +17,7 @@ var (
 
 // Фукнция должна вернуть число из интервала [l,r]
 func randInterval(l, r int) int{
-	return rand.Intn(r)+l
+	return rand.Intn(r-l)+l
 }
 
 
@@ -30,13 +30,10 @@ func main() {
 	}
 	if *start > *end{
 		fmt.Println("ERROR")
-	} else if *start == 1 && *end == 6{
-		for i := 0; i < *n; i++{
-			fmt.Println(randInterval(1, 6))
-		}
 	} else {
 		for i := 0; i < *n; i++ {
 			fmt.Println(randInterval(*start+0, *end+1))
 		}
 	}
 }
+

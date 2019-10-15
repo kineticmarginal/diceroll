@@ -31,8 +31,23 @@ func main() {
 	if *start > *end{
 		fmt.Println("ERROR")
 	} else {
-		for i := 0; i < *n; i++ {
-			fmt.Println(randInterval(*start+0, *end+1))
+		if *norepeat {
+			var x [10000]int
+			j := *start
+			for i := 0; j <= *end; i++ {
+				x[i] = j
+				j++
+			}
+			rand.Shuffle(*n, func(i, j int) {
+				x[i], x[j] = x[j], x[i]
+			})
+			for i := 0; i < *n; i++ {
+				fmt.Print(x[i], " ")
+			}
+		} else{
+			for i := 0; i < *n; i++ {
+				fmt.Println(randInterval(*start+0, *end+1))
+			}
 		}
 	}
 }
